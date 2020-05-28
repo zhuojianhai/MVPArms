@@ -20,8 +20,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jess.arms.http.GlobalHttpHandler;
+import com.jess.arms.http.imageloader.ImageConfig;
 import com.jess.arms.http.log.RequestInterceptor;
 import com.jess.arms.utils.ArmsUtils;
 
@@ -51,7 +53,6 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
 
     /**
      * 这里可以先客户端一步拿到每一次 Http 请求的结果, 可以先解析成 Json, 再做一些操作, 如检测到 token 过期后
-     * 重新请求 token, 并重新执行请求
      *
      * @param httpResult 服务器返回的结果 (已被框架自动转换为字符串)
      * @param chain      {@link okhttp3.Interceptor.Chain}
@@ -61,6 +62,7 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
     @NonNull
     @Override
     public Response onHttpResultResponse(@Nullable String httpResult, @NonNull Interceptor.Chain chain, @NonNull Response response) {
+        Timber.w("Result ------> "+ httpResult);
         if (!TextUtils.isEmpty(httpResult) && RequestInterceptor.isJson(response.body().contentType())) {
             try {
                 List<User> list = ArmsUtils.obtainAppComponentFromContext(context).gson().fromJson(httpResult, new TypeToken<List<User>>() {
@@ -100,6 +102,8 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
         /* 如果需要在请求服务器之前做一些操作, 则重新构建一个做过操作的 Request 并 return, 如增加 Header、Params 等请求信息, 不做操作则直接返回参数 request
         return chain.request().newBuilder().header("token", tokenId)
                               .build(); */
+
+        Timber.w("request ------> "+ArmsUtils.obtainAppComponentFromContext(context).gson().toJson(request) );
         return request;
     }
 }

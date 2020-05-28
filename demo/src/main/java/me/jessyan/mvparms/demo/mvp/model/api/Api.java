@@ -26,5 +26,10 @@ package me.jessyan.mvparms.demo.mvp.model.api;
  */
 public interface Api {
     String APP_DOMAIN = "https://api.github.com";
+
+    public static final String WAN = "wan";
+    public static final String WAN_URL = "https://wanandroid.com/";
+
+
     String RequestSuccess = "0";
 }

@@ -17,6 +17,7 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -59,6 +60,8 @@ dependencies {
     implementation rootProject.ext.dependencies["androideventbus"]
 //    implementation rootProject.ext.dependencies["eventbus"]
 
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["progressmanager"]
     implementation rootProject.ext.dependencies["retrofit-url-manager"]
@@ -79,7 +82,7 @@ dependencies {
 
     //现在已经将 Demo 中的屏幕适配框架从 AndroidAutoLayout 替换为 AndroidAutoSize, AndroidAutoLayout 和 AndroidAutoSize 可以在项目中共存
     //所以旧项目只要依赖 arms-autolayout 即可兼容之前的旧页面, 新页面可以使用 AndroidAutoSize 进行适配, 等有时间了再将旧页面全部替换为 AndroidAutoSize
-    implementation rootProject.ext.dependencies["autosize"]
+    //implementation rootProject.ext.dependencies["autosize"]
 
     //Arms 核心库不再包含 Glide, 想使用其他图片加载框架或者想自行扩展 ImageLoaderStrategy 就不要依赖 arms-imageloader-glide
     //依赖 arms-imageloader-glide 后还需要在 GlobalConfiguration 中手动注册 GlideImageLoaderStrategy
@@ -90,4 +93,13 @@ dependencies {
     debugImplementation rootProject.ext.dependencies["canary-debug"]
     releaseImplementation rootProject.ext.dependencies["canary-release"]
     testImplementation rootProject.ext.dependencies["canary-release"]
+
+    /*通用工具类 https://github.com/Blankj/AndroidUtilCode/blob/master/README-CN.md*/
+    implementation 'com.blankj:utilcode:1.28.6'
+    //BaseRecyclerViewAdapterHelper 支持
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex-instrumentation:1.0.3'
+
 }

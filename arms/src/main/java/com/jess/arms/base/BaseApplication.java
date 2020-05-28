@@ -62,6 +62,7 @@ public class BaseApplication extends Application implements App {
         super.onCreate();
         if (mAppDelegate != null)
             this.mAppDelegate.onCreate(this);
+
     }
 
     /**

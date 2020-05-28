@@ -22,7 +22,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.di.component.AppComponent;
@@ -35,8 +38,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.di.component.DaggerUserComponent;
+import me.jessyan.mvparms.demo.login.LoginActivity;
 import me.jessyan.mvparms.demo.mvp.contract.UserContract;
+import me.jessyan.mvparms.demo.mvp.model.entity.User;
 import me.jessyan.mvparms.demo.mvp.presenter.UserPresenter;
+import me.jessyan.mvparms.demo.mvp.ui.adapter.UserAdapter;
 import timber.log.Timber;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -63,7 +69,7 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     @Inject
     RecyclerView.LayoutManager mLayoutManager;
     @Inject
-    RecyclerView.Adapter mAdapter;
+    UserAdapter mAdapter;
 
     private Paginate mPaginate;
     private boolean isLoadingMore;
@@ -88,6 +94,14 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
         initRecyclerView();
         mRecyclerView.setAdapter(mAdapter);
         initPaginate();
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(UserActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

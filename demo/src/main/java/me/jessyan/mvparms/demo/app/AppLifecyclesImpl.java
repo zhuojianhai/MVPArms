@@ -18,7 +18,9 @@ package me.jessyan.mvparms.demo.app;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
 
+import com.blankj.utilcode.util.Utils;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.integration.cache.IntelligentCache;
 import com.jess.arms.utils.ArmsUtils;
@@ -42,7 +44,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
-//          MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
+          MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
     }
 
     @Override
@@ -73,6 +75,10 @@ public class AppLifecyclesImpl implements AppLifecycles {
         ArmsUtils.obtainAppComponentFromContext(application).extras()
                 .put(IntelligentCache.getKeyOfKeep(RefWatcher.class.getName())
                         , BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
+
+        //初始化第三方的工具类
+        Utils.init(application);
+        //RetrofitUrlManager.getInstance().putDomain(Api.WAN, Api.WAN_URL);
     }
 
     @Override

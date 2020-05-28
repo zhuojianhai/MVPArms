@@ -56,8 +56,8 @@ public final class GlobalConfiguration implements ConfigModule {
         if (!BuildConfig.LOG_DEBUG) { //Release 时, 让框架不再打印 Http 请求和响应的信息
             builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
         }
-
         builder.baseurl(Api.APP_DOMAIN)
+//        builder.baseurl(Api.WAN_URL)
                 //强烈建议自己自定义图片加载逻辑, 因为 arms-imageloader-glide 提供的 GlideImageLoaderStrategy 并不能满足复杂的需求
                 //请参考 https://github.com/JessYanCoding/MVPArms/wiki#3.4
                 .imageLoaderStrategy(new GlideImageLoaderStrategy())

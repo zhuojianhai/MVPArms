@@ -28,6 +28,7 @@ import java.util.List;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.mvp.contract.UserContract;
 import me.jessyan.mvparms.demo.mvp.model.UserModel;
 import me.jessyan.mvparms.demo.mvp.model.entity.User;
@@ -45,7 +46,6 @@ import me.jessyan.mvparms.demo.mvp.ui.adapter.UserAdapter;
  */
 @Module
 public abstract class UserModule {
-
     @Binds
     abstract UserContract.Model bindUserModel(UserModel model);
 
@@ -67,9 +67,15 @@ public abstract class UserModule {
         return new ArrayList<>();
     }
 
+    /**
+     * 创建UserAdater的前提是 要有List<User> 对象，所以provideUserList 必须要提前创建
+     * @param list
+     * @param view
+     * @return
+     */
     @ActivityScope
     @Provides
-    static RecyclerView.Adapter provideUserAdapter(List<User> list){
-        return new UserAdapter(list);
+    static UserAdapter provideUserAdapter(List<User> list,UserContract.View view){
+        return new UserAdapter(list,view.getActivity());
     }
 }

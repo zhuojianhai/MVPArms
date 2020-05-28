@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginActivity">
+
+    <EditText
+        android:id="@+id/et_login_name"
+        android:hint="请输入姓名"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+    </EditText>
+    <EditText
+        android:id="@+id/et_login_pwd"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+    </EditText>
+    <Button
+        android:id="@+id/bt_login"
+        android:text="登录"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:text="请求结果"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TextView>
+
+</LinearLayout>

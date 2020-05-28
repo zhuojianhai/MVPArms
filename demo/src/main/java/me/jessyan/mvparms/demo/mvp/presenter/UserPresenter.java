@@ -32,6 +32,7 @@ import java.util.List;
 import javax.inject.Inject;
 import me.jessyan.mvparms.demo.mvp.contract.UserContract;
 import me.jessyan.mvparms.demo.mvp.model.entity.User;
+import me.jessyan.mvparms.demo.mvp.ui.adapter.UserAdapter;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
@@ -57,7 +58,7 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     @Inject
     List<User> mUsers;
     @Inject
-    RecyclerView.Adapter mAdapter;
+    UserAdapter mAdapter;
     private int lastUserId = 1;
     private boolean isFirst = true;
     private int preEndIndex;
@@ -66,6 +67,7 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     @Inject
     public UserPresenter(UserContract.Model model, UserContract.View rootView) {
         super(model, rootView);
+
     }
 
     /**
