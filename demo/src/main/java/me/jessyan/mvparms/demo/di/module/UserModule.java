@@ -68,7 +68,7 @@ public abstract class UserModule {
     }
 
     /**
-     * 创建UserAdater的前提是 要有List<User> 对象，所以provideUserList 必须要提前创建
+     * 创建UserAdater的前提是 要有List
      * @param list
      * @param view
      * @return

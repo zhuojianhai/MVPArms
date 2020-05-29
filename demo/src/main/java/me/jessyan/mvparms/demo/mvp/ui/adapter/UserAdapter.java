@@ -70,12 +70,7 @@ public class UserAdapter extends BaseQuickAdapter<User, BaseViewHolder> {
         mImageLoader = mAppComponent.imageLoader();
     }
 
-//    public UserAdapter(@Nullable List<User> data) {
-//        super(data);
-//        //可以在任何可以拿到 Context 的地方, 拿到 AppComponent, 从而得到用 Dagger 管理的单例对象
-//        mAppComponent = ArmsUtils.obtainAppComponentFromContext(this.mContext);
-//        mImageLoader = mAppComponent.imageLoader();
-//    }
+
 
     @Override
     protected void convert(BaseViewHolder helper, User item) {
@@ -92,19 +87,4 @@ public class UserAdapter extends BaseQuickAdapter<User, BaseViewHolder> {
     }
 
 
-//    @Inject
-//    public UserAdapter(List<User> infos) {
-//        super(infos);
-//    }
-//
-//    @NonNull
-//    @Override
-//    public BaseHolder<User> getHolder(@NonNull View v, int viewType) {
-//        return new UserItemHolder(v);
-//    }
-//
-//    @Override
-//    public int getLayoutId(int viewType) {
-//        return R.layout.recycle_list;
-//    }
 }

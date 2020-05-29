@@ -36,6 +36,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import me.jessyan.autosize.internal.CustomAdapt;
 import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.di.component.DaggerUserComponent;
 import me.jessyan.mvparms.demo.login.LoginActivity;
@@ -58,7 +59,7 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class UserActivity extends BaseActivity<UserPresenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class UserActivity extends BaseActivity<UserPresenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener, CustomAdapt {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -209,5 +210,15 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
         super.onDestroy();
         this.mRxPermissions = null;
         this.mPaginate = null;
+    }
+
+    @Override
+    public boolean isBaseOnWidth() {
+        return false;
+    }
+
+    @Override
+    public float getSizeInDp() {
+        return 0;
     }
 }
